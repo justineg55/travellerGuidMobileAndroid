@@ -47,11 +47,17 @@ public class CardViewAdapter extends RecyclerView.Adapter <CardViewAdapter.Resul
 
     @Override
     public void onBindViewHolder(@NonNull CardViewAdapter.ResultViewHolder holder, int position) {
-        Result ingredient = results.get(position);
-        holder.activity.setText(ingredient.getActivity());
-//        holder.category.setText(ingredient.getCategory());
-//        holder.period.setText(ingredient.getPeriod());
-        holder.budget.setText(ingredient.getBudget());
+//        Result ingredient = results.get(position);
+//        holder.activity.setText(ingredient.getActivity());
+////        holder.category.setText(ingredient.getCategory());
+////        holder.period.setText(ingredient.getPeriod());
+//        holder.budget.setText(ingredient.getBudget());
+
+        TextView textViewNameActivity=holder.activity;
+        TextView textViewBudget=holder.budget;
+
+        textViewNameActivity.setText(results.get(position).getActivity());
+        textViewBudget.setText(results.get(position).getBudget());
 
     }
 

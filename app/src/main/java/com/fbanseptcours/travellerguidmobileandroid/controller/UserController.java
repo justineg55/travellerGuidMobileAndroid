@@ -13,6 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,19 +42,42 @@ public class UserController {
 
 
     public void connexion(Context context, String login, String password, SuccesConnexionEcouteur ecouteurSucces, ErreurConnexionEcouteur ecouteurErreur){
-        Log.d("USER_CONTROLEUR", "toto");
         //on appelle StringRequest pour récupérer le token
         StringRequest stringRequest = new StringRequest
                 //on met ici la requete pour s'authentifier en back avec le type de méthode
                 //la variable url est notre adresse pour pouvoir accés aux requetes, elle se trouve dans requestManager
                 (Request.Method.POST, RequestManager.url + "authentification",
                         token -> {
-                            //on stocke le token dans un objet préférences
+                            //travail sur le token afin d'isoler le userId ("id" dans le payload)
+                            //isolation du payload (tokenSplit[1])
+
+                            String[] tokenSplit = token.split("\\.");
+//                            Log.d("JWTOKEN", tokenSplit[1]);
+
+//                          décodage du payload
+                            Base64.Decoder decoder = Base64.getDecoder();
+                            String decryptedPayload = new String(decoder.decode(tokenSplit[1]));
+//                            Log.d("JWTOKEN", "STRING: " + decryptedPayload);
+
+//                          on isole le userId (en String)
+                            String userId_String = decryptedPayload.substring(
+                                    decryptedPayload.indexOf("id") + 4,
+                                    decryptedPayload.indexOf("id") + 5
+                            );
+
+                            //parse en int du userId_String
+                            int userId = Integer.parseInt(userId_String);
+//                            Log.d("JWTOKEN", "ID(int) : " + userId);
+
+                            //on stocke le token et le userId dans un objet préférences
                             //fichier mesprefeences stocké dans fichier de l'appli
-                            SharedPreferences preference = context.getSharedPreferences("MesPreferences",0); //0 pour private mode
+                            SharedPreferences preference = context.getSharedPreferences("MesPreferences", 0); //0 pour private mode
                             SharedPreferences.Editor editor = preference.edit();
+
                             //on associe la clé/valeur
                             editor.putString("token", token); // Storing string
+                            editor.putInt("userId", userId); // Storing int
+
                             //on sauvegarde le fichier texte
                             editor.apply();
 

@@ -57,7 +57,7 @@
             android:minHeight="10dp" />
 
         <CheckBox
-            android:id="@+id/cBox_item1"
+            android:id="@+id/cBox_matin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -65,7 +65,7 @@
             android:textColor="#FFFFFF" />
 
         <CheckBox
-            android:id="@+id/cBox_item2"
+            android:id="@+id/cBox_midi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -73,7 +73,7 @@
             android:textColor="#FFFFFF" />
 
         <CheckBox
-            android:id="@+id/cBox_item3"
+            android:id="@+id/cBox_aprem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -81,7 +81,7 @@
             android:textColor="#FFFFFF" />
 
         <CheckBox
-            android:id="@+id/cBox_item4"
+            android:id="@+id/cBox_soir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -89,7 +89,7 @@
             android:textColor="#FFFFFF" />
 
         <CheckBox
-            android:id="@+id/cBox_item5"
+            android:id="@+id/cBox_nuit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

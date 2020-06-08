@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 public class Result implements Serializable {
     private Integer id;
-    private String activity;
+    private String activityName;
 //    String period;
     private String budget;
 //    String category;
 
-    public Result(Integer id,String activity, String budget) {
+    public Result(Integer id,String activityName, String budget) {
         this.id = id;
-        this.activity = activity;
+        this.activityName = activityName;
 //        this.period = period;
         this.budget = budget;
 //        this.category = category;
@@ -26,11 +26,11 @@ public class Result implements Serializable {
     }
 
     public String getActivity() {
-        return activity;
+        return activityName;
     }
 
     public void setActivity(String activity) {
-        this.activity = activity;
+        this.activityName = activityName;
     }
 
 //    public String getPeriod() {
