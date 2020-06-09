@@ -2,6 +2,7 @@ package com.fbanseptcours.travellerguidmobileandroid.controller;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.ArraySet;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -18,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -75,43 +77,43 @@ public class ResultController {
             public Map<String, String> getHeaders() {
 
                 SharedPreferences preference = context.getSharedPreferences("MesPreferences", 0); // 0 - for private mode
-                Log.d("token",preference.getString("token",""));
+//                Log.d("token",preference.getString("token",""));
                 Map<String, String> params = new HashMap<>();
                 params.put("Content-Type", "application/json; charset=UTF-8");
                 params.put("Authorization", "Bearer " + preference.getString("token", ""));
                 return params;
             }
 
+            //méthode qui permet d'ajouter un body à notre requête
             @Override
             public byte[] getBody() {
                 try {
-                    JSONObject jsonBody = new JSONObject();
+                        JSONObject jsonBody = new JSONObject();
 
-                    Log.d("debug","getbody");
+//                    List<String> periodList=new ArrayList<>();
+//                    periodList.add("matin");
+//                    periodList.add("midi");
+//                    jsonBody.put("cityId",1);
+//                    jsonBody.put( "period",new JSONArray(periodList));
+//                    jsonBody.put("userId", 27);
+                        SharedPreferences sharedPreferences = context.getSharedPreferences("MesPreferences", 0);
+//                        //on récupère l'idcity enregistré lors de la recherche de l'utilisateur
+                        jsonBody.put("cityId", sharedPreferences.getInt("cityId", 0));
 
-                    List<String> periodList=new ArrayList<>();
-                    periodList.add("matin");
-                    periodList.add("midi");
-                    jsonBody.put("cityId",1);
-                    jsonBody.put( "period",new JSONArray(periodList));
-                    jsonBody.put("userId", 3);
+                        List<String> periodList = new ArrayList<>(sharedPreferences.getStringSet("period", null));
 
+//                        //on récupère la liste des périodes sélectinnées par l'utilisateur lors de la recherche
+                        jsonBody.put("period", new JSONArray(periodList));
+//                        //on récupère l'id de l'utilisateur enregistré dans MesPreferences lors qu'il s'est logué
+                        jsonBody.put("userId", sharedPreferences.getInt("userId",0));
 
-
-//                    JSONArray jsonArray = new JSONArray();
-//                    for (String s : periodList)
-//                        jsonArray.put(s);
-//
-//                    jsonBody.put("period", jsonArray);
-
-                    return jsonBody.toString().getBytes("utf-8");
-
-                } catch (JSONException | UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                        return jsonBody.toString().getBytes(StandardCharsets.UTF_8);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
                 }
 
-                return null;
-            }
         };
 
         RequestManager.getInstance(context).addToRequestQueue(context, jsonArrayRequest);

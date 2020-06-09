@@ -5,30 +5,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Spinner;
 
 import com.fbanseptcours.travellerguidmobileandroid.R;
 import com.fbanseptcours.travellerguidmobileandroid.controller.SpinnerCityController;
-import com.fbanseptcours.travellerguidmobileandroid.controller.UserController;
 import com.fbanseptcours.travellerguidmobileandroid.model.City;
 import com.fbanseptcours.travellerguidmobileandroid.utils.CityAdapter;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Base64;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class SearchActivity extends AppCompatActivity implements Spinner.OnItemSelectedListener{
 
@@ -52,7 +44,6 @@ public class SearchActivity extends AppCompatActivity implements Spinner.OnItemS
 
         spinner = findViewById(R.id.spinner);
 
-
         spinner.setOnItemSelectedListener(this);
 
         cBox_matin = findViewById(R.id.cBox_matin);
@@ -69,6 +60,7 @@ public class SearchActivity extends AppCompatActivity implements Spinner.OnItemS
             spinner.setAdapter(new CityAdapter(SearchActivity.this, android.R.layout.simple_spinner_dropdown_item, citiestab));
         });
 
+        //au clic du bouton rechercher on enregistre les choix de l'utilisateur dans le fichier MesPreferences : la city et les périodes sélectionnées
         btnSearch=findViewById(R.id.btn_search);
         btnSearch.setOnClickListener((View v) -> {
             sharedPreferences = getSharedPreferences("MesPreferences", 0);
@@ -81,6 +73,7 @@ public class SearchActivity extends AppCompatActivity implements Spinner.OnItemS
         });
     }
 
+    //méthode permettant de récupérer la liste des périodes sélectionnées par l'utilisateur
     private Set<String> getPeriods() {
         if ( !cBox_matin.isChecked() && !cBox_midi.isChecked() && !cBox_aprem.isChecked() && !cBox_soir.isChecked() && !cBox_nuit.isChecked() )
             periods.add("matin");
