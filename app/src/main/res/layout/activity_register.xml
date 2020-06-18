@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundessai2"
+    android:gravity="center|center_horizontal"
+    android:orientation="vertical"
+    tools:context=".view.RegisterActivity">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#32000000"
+        android:foregroundTint="#1A000000"
+        android:gravity="center|center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_infos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="#FFFFFF" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/label_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/baloo"
+            android:text="@string/prompt_enter_username"
+            android:textColor="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/input_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="@font/baloo"
+            android:hint="@string/username"
+            android:inputType="textPersonName"
+            android:textColorHint="#CCFFFFFF" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
+
+        <TextView
+            android:id="@+id/label_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/baloo"
+            android:text="@string/prompt_enter_password"
+            android:textColor="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/input_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="@font/baloo"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:textColorHint="#CCFFFFFF" />
+
+        <Button
+            android:id="@+id/btn_create_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTintMode="add"
+            android:fontFamily="@font/baloo"
+            android:text="@string/register" />
+    </LinearLayout>
+
+</LinearLayout>

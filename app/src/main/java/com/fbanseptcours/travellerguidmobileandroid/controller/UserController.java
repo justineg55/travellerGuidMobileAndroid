@@ -3,6 +3,7 @@ package com.fbanseptcours.travellerguidmobileandroid.controller;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -14,6 +15,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.HashMap;
@@ -22,8 +24,7 @@ import java.util.Map;
 public class UserController {
 
     private static UserController instance=null;
-
-    private static final String DEBUG_TAG = "USER_CONTROLLER";
+    public final static String FICHIER_PREFERENCE = "MesPreferences";
 
     private UserController(){
 
@@ -89,7 +90,7 @@ public class UserController {
 
                             //on stocke le token et le userId dans un objet préférences
                             //fichier mesprefeences stocké dans fichier de l'appli
-                            SharedPreferences preference = context.getSharedPreferences("MesPreferences", 0); //0 pour private mode
+                            SharedPreferences preference = context.getSharedPreferences(FICHIER_PREFERENCE, 0); //0 pour private mode
                             SharedPreferences.Editor editor = preference.edit();
 
                             //on associe la clé/valeur
@@ -135,6 +136,49 @@ public class UserController {
         };
 
         RequestManager.getInstance(context).addToRequestQueue(context,stringRequest);
+
+    }
+
+    //méthode qui permet de créer un nouveau compte
+    public void createAccount(Context context, String username, String password, SuccesConnexionEcouteur ecouteurSucces, ErreurConnexionEcouteur ecouteurErreur) {
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.PUT, RequestManager.url + "inscription",
+                response -> {
+                    Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
+                    ecouteurSucces.onSuccessConnection();
+                },
+                error -> {
+                    Toast.makeText(context, "error", Toast.LENGTH_SHORT).show();
+                    ecouteurErreur.onErrorConnection("Impossible de s'enregistrer");
+                }
+        )
+        {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Content-Type", "application/json; charset=UTF-8");
+                return params;
+            }
+
+
+            @Override
+            public byte[] getBody() {
+                try {
+                    JSONObject jsonBody = new JSONObject();
+                    jsonBody.put("login", username);
+                    jsonBody.put("password", password);
+
+                    return jsonBody.toString().getBytes(StandardCharsets.UTF_8);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                return null;
+            }
+        };
+
+        RequestManager.getInstance(context).addToRequestQueue(context, stringRequest);
 
     }
 
