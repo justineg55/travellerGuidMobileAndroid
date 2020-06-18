@@ -27,11 +27,28 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText input_password = findViewById(R.id.input_password);
         final Button register_account = findViewById(R.id.btn_create_account);
 
+        Intent i1 = new Intent( this, UserPreferencesActivity.class);
+
+
         register_account.setOnClickListener( (View v) -> UserController.getInstance().createAccount(
                 this,
                 input_username.getText().toString(),
                 input_password.getText().toString(),
-                () -> startActivity(new Intent(this, UserPreferencesActivity.class)),
+//                (String response) -> startActivity(i1), i1.putExtra("id",response));
+//                () -> sharedPreferences = getSharedPreferences("MesPreferences", 0);
+//        editor = sharedPreferences.edit();
+//        editor.putInt("cityId", (int) spinner.getSelectedItemId() + 1);
+                (id)-> {
+                    i1.putExtra("id",id);
+                    startActivity(i1);
+                },
                 (error) -> Toast.makeText(this, error, Toast.LENGTH_LONG).show()));
+
+//        register_account.setOnClickListener( (View v) -> UserController.getInstance().createAccount(
+//                this,
+//                input_username.getText().toString(),
+//                input_password.getText().toString(),
+//                () -> startActivity(new Intent(this, UserPreferencesActivity.class)),
+//                (error) -> Toast.makeText(this, error, Toast.LENGTH_LONG).show()));
     }
 }

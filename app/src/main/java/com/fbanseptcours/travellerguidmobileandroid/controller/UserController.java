@@ -45,6 +45,11 @@ public class UserController {
         void onErrorConnection(String messageErreur);
     }
 
+    //interface créée pour la méthode CreateAccount pour pouvoir récupérer l'id de l'user qui s'enregistre (id est le body de la reponse de la requete authentification)
+    public interface SuccesCreateAccountEcouteur{
+        void onSuccessConnection(String id);
+    }
+
 
     public void connexion(Context context, String login, String password, SuccesConnexionEcouteur ecouteurSucces, ErreurConnexionEcouteur ecouteurErreur) {
         Log.d("USER_CONTROLEUR", "toto");
@@ -140,12 +145,13 @@ public class UserController {
     }
 
     //méthode qui permet de créer un nouveau compte
-    public void createAccount(Context context, String username, String password, SuccesConnexionEcouteur ecouteurSucces, ErreurConnexionEcouteur ecouteurErreur) {
+    public void createAccount(Context context, String username, String password, SuccesCreateAccountEcouteur ecouteurSucces, ErreurConnexionEcouteur ecouteurErreur) {
         StringRequest stringRequest = new StringRequest(
                 Request.Method.PUT, RequestManager.url + "inscription",
                 response -> {
+
                     Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
-                    ecouteurSucces.onSuccessConnection();
+                    ecouteurSucces.onSuccessConnection(response);
                 },
                 error -> {
                     Toast.makeText(context, "error", Toast.LENGTH_SHORT).show();
