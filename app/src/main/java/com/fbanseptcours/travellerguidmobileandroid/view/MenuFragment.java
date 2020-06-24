@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 
 import com.fbanseptcours.travellerguidmobileandroid.MainActivity;
 import com.fbanseptcours.travellerguidmobileandroid.R;
+import com.fbanseptcours.travellerguidmobileandroid.controller.UserController;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +33,7 @@ public class MenuFragment extends Fragment {
         ImageButton btnHome =  view.findViewById(R.id.btn_home);
         ImageButton btnSearch =  view.findViewById(R.id.btn_search);
         ImageButton btnSettings =  view.findViewById(R.id.btn_settings);
+        ImageButton btnLogout =  view.findViewById(R.id.btn_logout);
 
         btnHome.setOnClickListener((View v) -> {
             startActivity(new Intent(getActivity(), MainActivity.class));
@@ -45,7 +47,13 @@ public class MenuFragment extends Fragment {
 //            startActivity(new Intent(getActivity(), SettingsActivity.class));
 //        });
 
-
+        btnLogout.setOnClickListener((View v) -> {
+            UserController.getInstance().deconnexion(
+                    this.getContext(),
+                    ()->startActivity(new Intent(getActivity(),FirstPageActivity.class)
+                    ));
+        });
+        
         return view;
 
         // Inflate the layout for this fragment

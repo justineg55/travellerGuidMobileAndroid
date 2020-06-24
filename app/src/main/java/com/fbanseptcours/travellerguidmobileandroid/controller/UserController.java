@@ -8,7 +8,9 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
+import com.fbanseptcours.travellerguidmobileandroid.utils.JWTUtils;
 import com.fbanseptcours.travellerguidmobileandroid.utils.RequestManager;
+import com.fbanseptcours.travellerguidmobileandroid.view.MenuFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,6 +20,7 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,21 +40,21 @@ public class UserController {
         return instance;
     }
 
-    public interface SuccesConnexionEcouteur{
+    public interface SuccesConnectionListener{
         void onSuccessConnection();
     }
 
-    public interface ErreurConnexionEcouteur{
+    public interface ErrorConnectionListener{
         void onErrorConnection(String messageErreur);
     }
 
     //interface créée pour la méthode CreateAccount pour pouvoir récupérer l'id de l'user qui s'enregistre (id est le body de la reponse de la requete authentification)
-    public interface SuccesCreateAccountEcouteur{
+    public interface SuccessCreateAccountListener{
         void onSuccessConnection(String id);
     }
 
 
-    public void connexion(Context context, String login, String password, SuccesConnexionEcouteur ecouteurSucces, ErreurConnexionEcouteur ecouteurErreur) {
+    public void connexion(Context context, String login, String password, SuccesConnectionListener ecouteurSuccess, ErrorConnectionListener onErrorConnection) {
         Log.d("USER_CONTROLEUR", "toto");
         //on appelle StringRequest pour récupérer le token
         StringRequest stringRequest = new StringRequest
@@ -105,11 +108,11 @@ public class UserController {
                             //on sauvegarde le fichier texte
                             editor.apply();
 
-                            ecouteurSucces.onSuccessConnection();
+                            ecouteurSuccess.onSuccessConnection();
 
                         },
                         //en cas d'erreur c'est un toast qui s'active
-                        error -> ecouteurErreur.onErrorConnection("Impossible de se connecter")
+                        error -> onErrorConnection.onErrorConnection("Impossible de se connecter")
                 ) {
 
 
@@ -145,7 +148,7 @@ public class UserController {
     }
 
     //méthode qui permet de créer un nouveau compte
-    public void createAccount(Context context, String username, String password, SuccesCreateAccountEcouteur ecouteurSucces, ErreurConnexionEcouteur ecouteurErreur) {
+    public void createAccount(Context context, String username, String password, SuccessCreateAccountListener ecouteurSucces, ErrorConnectionListener ecouteurErreur) {
         StringRequest stringRequest = new StringRequest(
                 Request.Method.PUT, RequestManager.url + "inscription",
                 response -> {
@@ -186,6 +189,37 @@ public class UserController {
 
         RequestManager.getInstance(context).addToRequestQueue(context, stringRequest);
 
+    }
+
+
+    public void deconnexion(
+            Context context,
+            SuccesConnectionListener listenerSuccess
+    ){
+        Log.d("deco","je rentre dans la methode");
+        SharedPreferences preference = context.getSharedPreferences(FICHIER_PREFERENCE, 0);
+        SharedPreferences.Editor editor = preference.edit();
+        editor.remove("token");
+        editor.apply();
+        listenerSuccess.onSuccessConnection();
+    }
+
+
+    public boolean isTokenValide(Context context){
+        SharedPreferences preference = context.getSharedPreferences(FICHIER_PREFERENCE, 0);
+        String token = preference.getString("token",null);
+        if(token != null) {
+            try {
+                Date expiration = new Date(JWTUtils.getBody(token).getLong("exp"));
+                Log.d("date exp", String.valueOf(expiration));
+                if(expiration.before(new Date())){
+                    return true;
+                }
+            } catch (UnsupportedEncodingException | JSONException e) {
+                return false;
+            }
+        }
+        return false;
     }
 
 

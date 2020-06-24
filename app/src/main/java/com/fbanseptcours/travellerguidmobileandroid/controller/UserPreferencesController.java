@@ -89,7 +89,7 @@ public class UserPreferencesController {
                     }
                     jsonBody.put("listCategory",array);
 
-//                    Log.d("json",jsonBody.toString());
+                    Log.d("json",jsonBody.toString());
 
                     return jsonBody.toString().getBytes("utf-8");
 

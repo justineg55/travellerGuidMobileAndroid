@@ -22,20 +22,26 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
-        login=findViewById(R.id.input_login);
-        password=findViewById(R.id.input_password);
-        btnConnection=findViewById(R.id.btn_connection);
+        if (UserController.getInstance().isTokenValide(this)) {
+            startActivity(new Intent(this, MainActivity.class));
+        } else {
 
-        btnConnection.setOnClickListener( (View v) -> {
-            UserController.getInstance().connexion(this, login.getText().toString(),
-                    password.getText().toString(),
-                    //en cas de succés :
-                    () -> startActivity(new Intent(this, MainActivity.class)),
-                    // en cas d'erreur :
-                    (String messageErreur) -> Toast.makeText(this, messageErreur, Toast.LENGTH_LONG).show()
-            );
-        });
+            setContentView(R.layout.activity_login);
+
+            login = findViewById(R.id.input_login);
+            password = findViewById(R.id.input_password);
+            btnConnection = findViewById(R.id.btn_connection);
+
+            btnConnection.setOnClickListener((View v) -> {
+                UserController.getInstance().connexion(this, login.getText().toString(),
+                        password.getText().toString(),
+                        //en cas de succés :
+                        () -> startActivity(new Intent(this, MainActivity.class)),
+                        // en cas d'erreur :
+                        (String messageErreur) -> Toast.makeText(this, messageErreur, Toast.LENGTH_LONG).show()
+                );
+            });
+        }
     }
 }
