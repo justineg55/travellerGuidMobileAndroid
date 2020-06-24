@@ -119,4 +119,35 @@ public class ResultController {
         RequestManager.getInstance(context).addToRequestQueue(context, jsonArrayRequest);
 
     }
-}
+
+
+    public interface DownloadCityListener {
+        void onCityDownloaded(City city);
+    }
+
+
+    public void getCity(Context context, int idCity, DownloadCityListener event
+    ) {
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                    (Request.Method.GET, RequestManager.url+ "cities/" + idCity, null,
+                            response -> {
+                                try {
+                                    City city = new City(
+                                            response.getInt("id"),
+                                            response.getString("cityName")
+//                                            response.getString("countryName")
+                                            );
+
+                                    event.onCityDownloaded(city);
+
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            },
+                            error -> Log.d("Erreur", error.toString()));
+
+            RequestManager.getInstance(context).addToRequestQueue(context, jsonObjectRequest);
+        }
+    }
+

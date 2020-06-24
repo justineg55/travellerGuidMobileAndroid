@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.fbanseptcours.travellerguidmobileandroid.R;
 import com.fbanseptcours.travellerguidmobileandroid.controller.ResultController;
+import com.fbanseptcours.travellerguidmobileandroid.model.City;
 import com.fbanseptcours.travellerguidmobileandroid.model.Result;
 import com.fbanseptcours.travellerguidmobileandroid.utils.CardViewAdapter;
 
@@ -18,15 +22,24 @@ public class ResultsListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private CardViewAdapter cardViewAdapter;
+    private TextView cityText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results_list);
 
+        cityText= findViewById(R.id.cityText);
+
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        SharedPreferences sharedPreferences = this.getSharedPreferences("MesPreferences", 0);
+        ResultController.getInstance().getCity(
+                this,sharedPreferences.getInt("cityId", 0),(City cityObject) -> {
+                    cityText.setText(cityObject.getCityName());
+                }
+        );
 
         ResultController.getInstance().getResults(
                 this,
