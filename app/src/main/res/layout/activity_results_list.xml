@@ -11,8 +11,13 @@
         android:id="@+id/cityText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#B338817C"
+        android:fontFamily="@font/baloo"
         android:gravity="center"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="24sp"
+        android:textStyle="italic" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"

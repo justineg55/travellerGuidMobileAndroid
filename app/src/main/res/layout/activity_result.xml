@@ -21,7 +21,7 @@
             <ImageView
                 android:id="@+id/imgActivity"
                 android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_height="100dp"
                 app:srcCompat="@drawable/travellerbackgroung"
                 android:padding="4dp"/>
 
@@ -32,7 +32,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_toEndOf="@id/imgActivity"
-                android:text="Activity :" />
+                android:text="Activité :"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txt_activity"
@@ -40,7 +42,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_toEndOf="@id/txt_activity_label"
-                android:text="Activity" />
+                android:fontFamily="@font/baloo"
+                android:text="Activity"
+                android:textSize="18sp" />
 
             <!-- budget label - budget -->
             <TextView
@@ -50,7 +54,9 @@
                 android:layout_below="@id/txt_activity_label"
                 android:layout_marginStart="5dp"
                 android:layout_toEndOf="@id/imgActivity"
-                android:text="Budget :" />
+                android:text="Budget :"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txt_budget"
@@ -60,7 +66,9 @@
                 android:layout_centerHorizontal="false"
                 android:layout_marginStart="5dp"
                 android:layout_toEndOf="@id/txt_budget_label"
-                android:text="Budget" />
+                android:fontFamily="@font/baloo"
+                android:text="Budget"
+                android:textSize="18sp" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

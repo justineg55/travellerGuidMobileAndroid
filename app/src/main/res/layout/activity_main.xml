@@ -22,6 +22,7 @@
             android:fontFamily="@font/baloo"
             android:gravity="center"
             android:text="Bonjour "
+            android:textColor="#F0201E1E"
             android:textSize="30sp" />
 
         <Space
@@ -32,8 +33,10 @@
             android:id="@+id/txt_loginUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/baloo"
             android:gravity="center"
             android:text="TextView"
+            android:textColor="#E97A0D0D"
             android:textSize="24sp" />
     </LinearLayout>
 

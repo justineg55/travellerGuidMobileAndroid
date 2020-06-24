@@ -4,10 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundessai2"
     android:foregroundGravity="center"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".view.UserPreferencesActivity">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#400E0C0C"
+        android:fontFamily="@font/baloo"
+        android:gravity="center"
+        android:text="Choix des préférences"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
 
     <Space
         android:layout_width="match_parent"
@@ -18,8 +30,11 @@
         android:id="@+id/txt_categorie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#400E0C0C"
+        android:fontFamily="@font/baloo"
         android:gravity="center"
-        android:text="Quelles catégories aimez-vous ?" />
+        android:text="Quelles catégories aimez-vous ?"
+        android:textColor="#FFFFFF" />
 
     <Space
         android:layout_width="match_parent"
@@ -29,6 +44,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#400E0C0C"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -55,6 +71,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#400E0C0C"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -92,8 +109,11 @@
             android:id="@+id/txt_budget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#400E0C0C"
+            android:fontFamily="@font/baloo"
             android:gravity="center"
-            android:text="Quel budget au maximum pour vos activités ? " />
+            android:text="Quel budget au maximum pour vos activités ? "
+            android:textColor="#FFFFFF" />
 
         <RadioGroup
             android:id="@+id/radiogrp"
@@ -130,6 +150,7 @@
         android:id="@+id/btn_valider"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#FFFFFF"
         android:text="Valider mes préférences" />
 
 </LinearLayout>

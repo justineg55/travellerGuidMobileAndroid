@@ -62,13 +62,11 @@ public class SettingsUserPreferencesActivity extends AppCompatActivity {
 
         categories=new HashSet<>();
 
+        //récupération de l'id du user connecté grâce à la méthode getUserConnected
         User userConnected = UserController.getInstance().getUserConnected(this);
         int idUserConnected=userConnected.getId();
 
-        //au clic sur le bouton valider, on enregistre les préférences (liste de categories et son budget) dans la bdd et on envoie l'utilisateur sur la page d'accueil
-        //attention il faut que l'utilisateur s'authentifie pour qu'on puisse lui générer son token ! ! !! ! !
-
-        //au clic sur le bouton valider ses préférences, on enregistre ses préférences et on l'envoie sur la page de login pour qu'il puisse s'authentifier et avoir son token
+        //au clic sur le bouton valider ses préférences, on enregistre ses préférences et on le renvoie sur la page main activity
         btnValider.setOnClickListener( (View v) ->
                 UserPreferencesController.getInstance().updatePreferencesUser(
                         this,idUserConnected,getBudget(),getCategories(),
