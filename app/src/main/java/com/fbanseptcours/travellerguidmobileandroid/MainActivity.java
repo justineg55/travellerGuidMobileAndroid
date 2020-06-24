@@ -11,15 +11,15 @@ import com.fbanseptcours.travellerguidmobileandroid.view.SearchActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnSearch;
+//    Button btnSearch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnSearch=findViewById(R.id.btn_search);
-        btnSearch.setOnClickListener((View v) -> {
-            startActivity(new Intent(this, SearchActivity.class));
-        });
+//        btnSearch=findViewById(R.id.btn_search);
+//        btnSearch.setOnClickListener((View v) -> {
+//            startActivity(new Intent(this, SearchActivity.class));
+//        });
     }
 }

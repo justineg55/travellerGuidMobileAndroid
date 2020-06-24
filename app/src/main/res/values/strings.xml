@@ -16,4 +16,7 @@
     <string name="register">M\'enregistrer</string>
     <string name="create_account">Créer un compte</string>
     <string name="login">S\'authentifier</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
