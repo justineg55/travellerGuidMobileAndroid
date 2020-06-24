@@ -53,7 +53,7 @@ public class MenuFragment extends Fragment {
                     ()->startActivity(new Intent(getActivity(),FirstPageActivity.class)
                     ));
         });
-        
+
         return view;
 
         // Inflate the layout for this fragment

@@ -9,107 +9,141 @@
     android:orientation="vertical"
     tools:context=".view.SearchActivity">
 
-    <TextView
-        android:id="@+id/txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#400E0C0C"
-        android:fontFamily="@font/baloo"
-        android:gravity="center"
-        android:text="Rechercher une activité"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="20dp" />
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#40392D2D" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="20dp" />
-
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#400E0C0C"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/txt_period"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/baloo"
-            android:text="Quand ?"
-            android:textColor="#FFFFFF" />
+        android:gravity="center"
+        android:orientation="vertical">
 
         <Space
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:minHeight="20dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="20dp" />
+
+        <TextView
+            android:id="@+id/txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:minHeight="10dp" />
+            android:background="#400E0C0C"
+            android:fontFamily="@font/baloo"
+            android:gravity="center"
+            android:text="Rechercher une activité"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
 
-        <CheckBox
-            android:id="@+id/cBox_matin"
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            android:backgroundTint="#40392D2D" />
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Matin"
-            android:textColor="#FFFFFF" />
+            android:background="#400E0C0C"
+            android:orientation="horizontal">
 
-        <CheckBox
-            android:id="@+id/cBox_midi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Midi"
-            android:textColor="#FFFFFF" />
+            <TextView
+                android:id="@+id/txt_period"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/baloo"
+                android:text="Quand ?"
+                android:textColor="#FFFFFF" />
 
-        <CheckBox
-            android:id="@+id/cBox_aprem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Après-midi"
-            android:textColor="#FFFFFF" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:minHeight="10dp" />
 
-        <CheckBox
-            android:id="@+id/cBox_soir"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Soir"
-            android:textColor="#FFFFFF" />
+            <CheckBox
+                android:id="@+id/cBox_matin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Matin"
+                android:textColor="#FFFFFF" />
 
-        <CheckBox
-            android:id="@+id/cBox_nuit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Nuit"
-            android:textColor="#FFFFFF" />
+            <CheckBox
+                android:id="@+id/cBox_midi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Midi"
+                android:textColor="#FFFFFF" />
 
+            <CheckBox
+                android:id="@+id/cBox_aprem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Après-midi"
+                android:textColor="#FFFFFF" />
+
+            <CheckBox
+                android:id="@+id/cBox_soir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Soir"
+                android:textColor="#FFFFFF" />
+
+            <CheckBox
+                android:id="@+id/cBox_nuit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Nuit"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
     </LinearLayout>
 
-    <Space
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="20dp" />
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_search"
-        android:layout_width="wrap_content"
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="94dp"
+            android:minHeight="20dp" />
+
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FFEB3B"
+            android:backgroundTintMode="add"
+            android:fontFamily="@font/baloo"
+            android:text="Rechercher" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#FFEB3B"
-        android:backgroundTintMode="add"
-        android:fontFamily="@font/baloo"
-        android:text="Rechercher" />
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="186dp" />
+
+        <fragment
+            android:id="@+id/fragment2"
+            android:name="com.fbanseptcours.travellerguidmobileandroid.view.MenuFragment"
+            android:layout_width="match_parent"
+            android:layout_height="70dp" />
+    </LinearLayout>
 
 </LinearLayout>
