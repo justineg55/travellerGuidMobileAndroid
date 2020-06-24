@@ -66,11 +66,20 @@ public class UserPreferencesActivity extends AppCompatActivity {
         int idResponse= Integer.parseInt(i1.getStringExtra("id"));
 
         //au clic sur le bouton valider, on enregistre les préférences (liste de categories et son budget) dans la bdd et on envoie l'utilisateur sur la page d'accueil
+        //attention il faut que l'utilisateur s'authentifie pour qu'on puisse lui générer son token ! ! !! ! !
+
+//        btnValider.setOnClickListener( (View v) ->
+//            UserPreferencesController.getInstance().updatePreferencesUser(
+//                    this,idResponse,getBudget(),getCategories(),
+//                    () -> startActivity(new Intent(this, MainActivity.class)),
+//                            (String messageErreur) -> Toast.makeText(this, messageErreur, Toast.LENGTH_LONG).show()));
+
+        //au clic sur le bouton valider, on enregistre ses préférences et on l'envoie sur la page de login pour qu'il puisse s'authentifier et avoir son token
         btnValider.setOnClickListener( (View v) ->
-            UserPreferencesController.getInstance().updatePreferencesUser(
-                    this,idResponse,getBudget(),getCategories(),
-                    () -> startActivity(new Intent(this, MainActivity.class)),
-                            (String messageErreur) -> Toast.makeText(this, messageErreur, Toast.LENGTH_LONG).show()));
+                UserPreferencesController.getInstance().updatePreferencesUser(
+                        this,idResponse,getBudget(),getCategories(),
+                        () -> startActivity(new Intent(this, LoginActivity.class)),
+                        (String messageErreur) -> Toast.makeText(this, messageErreur, Toast.LENGTH_LONG).show()));
 
         }
 

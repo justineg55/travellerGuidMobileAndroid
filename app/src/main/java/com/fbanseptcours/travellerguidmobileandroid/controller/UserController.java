@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
+import com.fbanseptcours.travellerguidmobileandroid.model.User;
 import com.fbanseptcours.travellerguidmobileandroid.utils.JWTUtils;
 import com.fbanseptcours.travellerguidmobileandroid.utils.RequestManager;
 import com.fbanseptcours.travellerguidmobileandroid.view.MenuFragment;
@@ -220,6 +221,33 @@ public class UserController {
             }
         }
         return false;
+    }
+
+    public User getUserConnected(Context context){
+        SharedPreferences preference = context.getSharedPreferences(FICHIER_PREFERENCE, 0);
+        String token = preference.getString("token",null);
+
+
+
+        if(token != null) {
+
+            try {
+                JSONObject jsonUtilisateur = JWTUtils.getBody(token);
+                User user = new User(
+                        jsonUtilisateur.getInt("id"),
+                        jsonUtilisateur.getString("sub")
+                );
+
+                //si on a besoin de récupérer le rôle
+                String role = jsonUtilisateur.getString("role");
+
+                return user;
+
+            } catch (UnsupportedEncodingException | JSONException e) {
+                return new User(0,"-");
+            }
+        }
+        return new User(0,"-");
     }
 
 
