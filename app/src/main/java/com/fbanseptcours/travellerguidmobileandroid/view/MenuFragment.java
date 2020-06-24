@@ -43,9 +43,9 @@ public class MenuFragment extends Fragment {
             startActivity(new Intent(getActivity(), SearchActivity.class));
         });
 
-//        btnSettings.setOnClickListener((View v) -> {
-//            startActivity(new Intent(getActivity(), SettingsActivity.class));
-//        });
+        btnSettings.setOnClickListener((View v) -> {
+            startActivity(new Intent(getActivity(), SettingsUserPreferencesActivity.class));
+        });
 
         btnLogout.setOnClickListener((View v) -> {
             UserController.getInstance().deconnexion(

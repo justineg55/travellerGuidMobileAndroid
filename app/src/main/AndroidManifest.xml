@@ -20,7 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".view.UserPreferencesActivity"></activity>
+        <activity android:name=".view.SettingsUserPreferencesActivity" />
         <activity android:name=".view.ResultsListActivity" />
         <activity android:name=".view.ResultActivity" />
         <activity android:name=".view.SearchActivity" />
