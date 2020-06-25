@@ -65,14 +65,6 @@ public class UserPreferencesActivity extends AppCompatActivity {
         Intent i1 = getIntent();
         int idResponse= Integer.parseInt(i1.getStringExtra("id"));
 
-        //au clic sur le bouton valider, on enregistre les préférences (liste de categories et son budget) dans la bdd et on envoie l'utilisateur sur la page d'accueil
-        //attention il faut que l'utilisateur s'authentifie pour qu'on puisse lui générer son token ! ! !! ! !
-
-//        btnValider.setOnClickListener( (View v) ->
-//            UserPreferencesController.getInstance().updatePreferencesUser(
-//                    this,idResponse,getBudget(),getCategories(),
-//                    () -> startActivity(new Intent(this, MainActivity.class)),
-//                            (String messageErreur) -> Toast.makeText(this, messageErreur, Toast.LENGTH_LONG).show()));
 
         //au clic sur le bouton valider, on enregistre ses préférences et on l'envoie sur la page de login pour qu'il puisse s'authentifier et avoir son token
         btnValider.setOnClickListener( (View v) ->
@@ -90,7 +82,7 @@ public class UserPreferencesActivity extends AppCompatActivity {
         return radioButtonSelected.getText().toString();
     }
 
-    //méthode pour récupérer lles catégories sélectionnées par l'utilisateur
+    //méthode pour récupérer les catégories sélectionnées par l'utilisateur
     //s'il ne sélectionne rien, par défaut il n'y aura pas de filtre effectué avec la catégorie
         private Set<String> getCategories() {
             if ( !cBox1.isChecked() && !cBox2.isChecked() && !cBox3.isChecked() && !cBox4.isChecked() && !cBox5.isChecked() && !cBox6.isChecked()) {
@@ -124,3 +116,12 @@ public class UserPreferencesActivity extends AppCompatActivity {
 
 }
 
+
+
+//au clic sur le bouton valider, on enregistre les préférences (liste de categories et son budget) dans la bdd et on envoie l'utilisateur sur la page d'accueil
+//attention il faut que l'utilisateur s'authentifie pour qu'on puisse lui générer son token ! ! !! ! !
+//        btnValider.setOnClickListener( (View v) ->
+//            UserPreferencesController.getInstance().updatePreferencesUser(
+//                    this,idResponse,getBudget(),getCategories(),
+//                    () -> startActivity(new Intent(this, MainActivity.class)),
+//                            (String messageErreur) -> Toast.makeText(this, messageErreur, Toast.LENGTH_LONG).show()));

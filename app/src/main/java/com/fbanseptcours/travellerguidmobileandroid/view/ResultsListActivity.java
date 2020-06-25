@@ -35,12 +35,15 @@ public class ResultsListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         SharedPreferences sharedPreferences = this.getSharedPreferences("MesPreferences", 0);
+
+        //on affiche la ville en haut de la page de résultats dans le textView cityText grâce à l'id city enregistré dans mes préférences lors de la recherche
         ResultController.getInstance().getCity(
                 this,sharedPreferences.getInt("cityId", 0),(City cityObject) -> {
                     cityText.setText(cityObject.getCityName());
                 }
         );
 
+        //récupération de la liste des résultats dans notre cardViewAdapter
         ResultController.getInstance().getResults(
                 this,
                 (List<Result> listResults) -> {

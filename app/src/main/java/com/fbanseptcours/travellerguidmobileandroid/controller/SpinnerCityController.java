@@ -36,6 +36,7 @@ public class SpinnerCityController {
         void onListCitiesDownloaded(List<City> cities);
     }
 
+    //récupération de la liste des villes par appel à l'api pour affichage dans le spinner de la page recherche
     public void getCities(Context context, DownloadCitiesListListener event) {
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest

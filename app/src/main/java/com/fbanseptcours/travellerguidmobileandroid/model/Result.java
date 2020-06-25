@@ -5,16 +5,12 @@ import java.io.Serializable;
 public class Result implements Serializable {
     private Integer id;
     private String activityName;
-//    String period;
     private String budget;
-//    String category;
 
     public Result(Integer id,String activityName, String budget) {
         this.id = id;
         this.activityName = activityName;
-//        this.period = period;
         this.budget = budget;
-//        this.category = category;
     }
 
     public Integer getId() {
@@ -33,13 +29,6 @@ public class Result implements Serializable {
         this.activityName = activityName;
     }
 
-//    public String getPeriod() {
-//        return period;
-//    }
-//
-//    public void setPeriod(String period) {
-//        this.period = period;
-//    }
 
     public String getBudget() {
         return budget;
@@ -49,11 +38,4 @@ public class Result implements Serializable {
         this.budget = budget;
     }
 
-//    public String getCategory() {
-//        return category;
-//    }
-//
-//    public void setCategory(String category) {
-//        this.category = category;
-//    }
 }

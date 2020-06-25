@@ -45,7 +45,7 @@ public class ResultController {
         void onListResultsDownloaded(List<Result> results);
     }
 
-
+    //appel de l'api spring sur la requete search pour récupérer les résultats de la recherche : récupération de l'activité et du budget
     public void getResults(Context context, ResultController.DownloadResultsListListener event) {
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest
@@ -84,20 +84,15 @@ public class ResultController {
                 return params;
             }
 
-            //méthode qui permet d'ajouter un body à notre requête
+            //méthode qui permet d'ajouter un body à notre requête avec les préférences de l'utilisateur (ses catégories et son budget) ainsi que la ville et les périodes choisies
             @Override
             public byte[] getBody() {
                 try {
                         JSONObject jsonBody = new JSONObject();
 
-//                    List<String> periodList=new ArrayList<>();
-//                    periodList.add("matin");
-//                    periodList.add("midi");
-//                    jsonBody.put("cityId",1);
-//                    jsonBody.put( "period",new JSONArray(periodList));
-//                    jsonBody.put("userId", 27);
+//
                         SharedPreferences sharedPreferences = context.getSharedPreferences("MesPreferences", 0);
-//                        //on récupère l'idcity enregistré lors de la recherche de l'utilisateur
+//                        //on récupère l'idcity enregistrée lors de la recherche de l'utilisateur
                         jsonBody.put("cityId", sharedPreferences.getInt("cityId", 0));
 
                         List<String> periodList = new ArrayList<>(sharedPreferences.getStringSet("period", null));
@@ -126,6 +121,7 @@ public class ResultController {
     }
 
 
+    //récupération de la ville choisie par l'utilisateur grâce à l'appel à la requête getCitybyid de l'api pour affichage dans pa page de résultats
     public void getCity(Context context, int idCity, DownloadCityListener event
     ) {
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
@@ -135,7 +131,6 @@ public class ResultController {
                                     City city = new City(
                                             response.getInt("id"),
                                             response.getString("cityName")
-//                                            response.getString("countryName")
                                             );
 
                                     event.onCityDownloaded(city);

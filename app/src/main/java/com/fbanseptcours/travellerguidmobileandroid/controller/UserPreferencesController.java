@@ -71,6 +71,7 @@ public class UserPreferencesController {
                 return params;
             }
 
+            //on ajoute le body dans notre requête : l'id de l'utilisateur dont les préférences sont à modifier, le budget et les catégories sélectionnés
             @Override
             public byte[] getBody() throws AuthFailureError {
                 try {
@@ -82,14 +83,14 @@ public class UserPreferencesController {
                     JSONArray array = new JSONArray();
                     JSONObject arrayItem;
                     for (String category : categories){
-                        Log.d("category",category);
+//                        Log.d("category",category);
                         arrayItem = new JSONObject();
                         arrayItem.put("type",category);
                         array.put(arrayItem);
                     }
                     jsonBody.put("listCategory",array);
 
-                    Log.d("json",jsonBody.toString());
+//                    Log.d("json",jsonBody.toString());
 
                     return jsonBody.toString().getBytes("utf-8");
 

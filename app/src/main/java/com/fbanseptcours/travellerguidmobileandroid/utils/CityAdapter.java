@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 
 import com.fbanseptcours.travellerguidmobileandroid.model.City;
 
+//gestion du spinner avec les villes à l'intérieur dans la page search
 public class CityAdapter extends ArrayAdapter<City> {
 
     private Context context;

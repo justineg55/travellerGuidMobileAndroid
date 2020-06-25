@@ -28,6 +28,7 @@ import java.util.Map;
 public class UserController {
 
     private static UserController instance=null;
+    //on définit le nom du fichier "MesPreferences, par convention on le nomme comme cela avec des majuscules
     public final static String FICHIER_PREFERENCE = "MesPreferences";
 
     private UserController(){
@@ -41,40 +42,43 @@ public class UserController {
         return instance;
     }
 
+    //interface fonctionnelle en cas de succes
     public interface SuccesConnectionListener{
         void onSuccessConnection();
     }
 
+    //interface fonctionnelle en cas d'erreur'
     public interface ErrorConnectionListener{
         void onErrorConnection(String messageErreur);
     }
 
-    //interface créée pour la méthode CreateAccount pour pouvoir récupérer l'id de l'user qui s'enregistre (id est le body de la reponse de la requete authentification)
+    //interface créée pour la méthode CreateAccount pour pouvoir récupérer l'id de l'user qui s'inscrit (id est le body de la reponse de la requete authentification)
     public interface SuccessCreateAccountListener{
         void onSuccessConnection(String id);
     }
 
 
+    //méthode appelée lors de l'authentification d'un user pour récupération du token : appel de la requete authentification de notre api
     public void connexion(Context context, String login, String password, SuccesConnectionListener ecouteurSuccess, ErrorConnectionListener onErrorConnection) {
-        Log.d("USER_CONTROLEUR", "toto");
+
         //on appelle StringRequest pour récupérer le token
         StringRequest stringRequest = new StringRequest
                 //on met ici la requete pour s'authentifier en back avec le type de méthode
-                //la variable url est notre adresse pour pouvoir accés aux requetes, elle se trouve dans requestManager
+                //la variable url est notre adresse pour pouvoir avoir accés aux requetes, elle se trouve dans requestManager
                 (Request.Method.POST, RequestManager.url + "authentification",
                         token -> {
 
-                            Log.d("JWTOKEN", "token non décrypté : " + token);
+//                            Log.d("JWTOKEN", "token non décrypté : " + token);
                             //travail sur le token afin d'isoler le userId ("id" dans le payload)
                             //isolation du payload (tokenSplit[1])
 
                             String[] tokenSplit = token.split("\\.");
-                            Log.d("JWTOKEN", "token non décrypté, payload isolé : " + tokenSplit[1]);
+//                            Log.d("JWTOKEN", "token non décrypté, payload isolé : " + tokenSplit[1]);
 
                             //décodage du payload et "clean-up"
                             Base64.Decoder decoder = Base64.getDecoder();
                             String decryptedPayload = new String(decoder.decode(tokenSplit[1]));
-                            Log.d("JWTOKEN", "payload décrypté : " + decryptedPayload);
+//                            Log.d("JWTOKEN", "payload décrypté : " + decryptedPayload);
 
                             //on va créer un JSONObject à partir du payload
                             //pour ça on va vérifier que notre payload fera un bon JSON avec le JSONTokener
@@ -88,14 +92,14 @@ public class UserController {
                                 e.printStackTrace();
                             }
 
-                            //on peut donc, parser en toute tranquillité l'id de l'utilisateur contenu dans le JSONObject.
+                            //on peut donc parser l'id de l'utilisateur contenu dans le JSONObject.
                             int userId = 0;
                             try {
                                 userId = jsonPayload.getInt("id");
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-                            Log.d("JWTOKEN", "id (en int) : " + userId);
+//                            Log.d("JWTOKEN", "id (en int) : " + userId);
 
                             //on stocke le token et le userId dans un objet préférences
                             //fichier mesprefeences stocké dans fichier de l'appli
@@ -126,7 +130,7 @@ public class UserController {
                 return params;
             }
 
-
+            //on ajoute le body dans notre requete : login et password saisis par l'utilisateur pour permettre l'authentification
             @Override
             public byte[] getBody() throws AuthFailureError {
                 try {
@@ -148,7 +152,7 @@ public class UserController {
 
     }
 
-    //méthode qui permet de créer un nouveau compte
+    //méthode qui permet de créer un nouveau compte : appel de la requete inscription de notre api
     public void createAccount(Context context, String username, String password, SuccessCreateAccountListener ecouteurSucces, ErrorConnectionListener ecouteurErreur) {
         StringRequest stringRequest = new StringRequest(
                 Request.Method.PUT, RequestManager.url + "inscription",
@@ -170,7 +174,7 @@ public class UserController {
                 return params;
             }
 
-
+            //ajout du login et du password dans le body pour enregistrement dans la base de données
             @Override
             public byte[] getBody() {
                 try {
@@ -192,12 +196,12 @@ public class UserController {
 
     }
 
-
+    //méthode qui permet de 'déconnecter' un utilisateur : de supprimer son token du fichier mesPreferences ; il devra se réauthentifier
     public void deconnexion(
             Context context,
             SuccesConnectionListener listenerSuccess
     ){
-        Log.d("deco","je rentre dans la methode");
+
         SharedPreferences preference = context.getSharedPreferences(FICHIER_PREFERENCE, 0);
         SharedPreferences.Editor editor = preference.edit();
         editor.remove("token");
@@ -205,14 +209,14 @@ public class UserController {
         listenerSuccess.onSuccessConnection();
     }
 
-
+    //méthode qui permet de vérifier la validité du token présent dans le fichier mesPreferences selon sa date d'expiration
     public boolean isTokenValide(Context context){
         SharedPreferences preference = context.getSharedPreferences(FICHIER_PREFERENCE, 0);
         String token = preference.getString("token",null);
         if(token != null) {
             try {
                 Date expiration = new Date(JWTUtils.getBody(token).getLong("exp"));
-                Log.d("date exp", String.valueOf(expiration));
+//                Log.d("date exp", String.valueOf(expiration));
                 if(expiration.before(new Date())){
                     return true;
                 }
@@ -223,11 +227,10 @@ public class UserController {
         return false;
     }
 
+    //méthode qui permet de récupérer l'utilisateur qui est connecté par l'intermédiaire de son token et du paramètre sub dans le token qui correspond à son login
     public User getUserConnected(Context context){
         SharedPreferences preference = context.getSharedPreferences(FICHIER_PREFERENCE, 0);
         String token = preference.getString("token",null);
-
-
 
         if(token != null) {
 
@@ -238,8 +241,8 @@ public class UserController {
                         jsonUtilisateur.getString("sub")
                 );
 
-                //si on a besoin de récupérer le rôle
-                String role = jsonUtilisateur.getString("role");
+                //si on a besoin de récupérer son rôle
+//                String role = jsonUtilisateur.getString("role");
 
                 return user;
 

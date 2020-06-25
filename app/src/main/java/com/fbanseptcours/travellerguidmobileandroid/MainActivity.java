@@ -22,12 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
         TextView txtLogin=findViewById(R.id.txt_loginUser);
 
+        //affichage du login de l'utilsiateur connecté
         User userConnected = UserController.getInstance().getUserConnected(this);
         txtLogin.setText(userConnected.getLogin());
-
-//        btnSearch=findViewById(R.id.btn_search);
-//        btnSearch.setOnClickListener((View v) -> {
-//            startActivity(new Intent(this, SearchActivity.class));
-//        });
+        
     }
 }

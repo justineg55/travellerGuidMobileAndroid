@@ -27,28 +27,20 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText input_password = findViewById(R.id.input_password);
         final Button register_account = findViewById(R.id.btn_create_account);
 
+        //on envoie l'utilisateur sur la page de choix de ses préférences
         Intent i1 = new Intent( this, UserPreferencesActivity.class);
 
-
+//lors de l'enregistrement du login et du password de l'utilisateur, on envoie l'id créée (body de la réponse de la requete authentification de notre api) dans la page UserPreferencesActivity grâce à la méthode putExtra(on va avoir besoin de l'id pour set les informations de l'user en bdd)
         register_account.setOnClickListener( (View v) -> UserController.getInstance().createAccount(
                 this,
                 input_username.getText().toString(),
                 input_password.getText().toString(),
-//                (String response) -> startActivity(i1), i1.putExtra("id",response));
-//                () -> sharedPreferences = getSharedPreferences("MesPreferences", 0);
-//        editor = sharedPreferences.edit();
-//        editor.putInt("cityId", (int) spinner.getSelectedItemId() + 1);
+
                 (id)-> {
                     i1.putExtra("id",id);
                     startActivity(i1);
                 },
                 (error) -> Toast.makeText(this, error, Toast.LENGTH_LONG).show()));
 
-//        register_account.setOnClickListener( (View v) -> UserController.getInstance().createAccount(
-//                this,
-//                input_username.getText().toString(),
-//                input_password.getText().toString(),
-//                () -> startActivity(new Intent(this, UserPreferencesActivity.class)),
-//                (error) -> Toast.makeText(this, error, Toast.LENGTH_LONG).show()));
     }
 }
