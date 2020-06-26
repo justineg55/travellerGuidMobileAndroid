@@ -45,7 +45,7 @@
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="match_parent"
-            android:layout_height="95dp"
+            android:layout_height="75dp"
             android:background="@android:drawable/spinner_background"
             android:backgroundTint="#FDF8F8"
             android:gravity="left" />

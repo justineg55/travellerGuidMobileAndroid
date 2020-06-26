@@ -140,7 +140,18 @@ public class ResultController {
                                     e.printStackTrace();
                                 }
                             },
-                            error -> Log.d("Erreur", error.toString()));
+                            error -> Log.d("Erreur", error.toString()))
+            {
+                @Override
+                public Map<String, String> getHeaders() {
+
+                    SharedPreferences preference = context.getSharedPreferences("MesPreferences", 0); // 0 - for private mode
+                    Map<String, String> params = new HashMap<>();
+                    params.put("Content-Type", "application/json; charset=UTF-8");
+                    params.put("Authorization", "Bearer " + preference.getString("token", ""));
+                    return params;
+                }
+            };
 
             RequestManager.getInstance(context).addToRequestQueue(context, jsonObjectRequest);
         }
