@@ -12,18 +12,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="3"
         android:gravity="center"
         android:orientation="vertical">
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="85dp"
-            android:minHeight="20dp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="20dp" />
 
         <TextView
             android:id="@+id/txt"
@@ -55,69 +46,90 @@
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="95dp"
-            android:backgroundTint="#FDF8F8" />
+            android:background="@android:drawable/spinner_background"
+            android:backgroundTint="#FDF8F8"
+            android:gravity="left" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
             android:background="#400E0C0C"
-            android:orientation="horizontal"
             android:paddingLeft="5dp">
 
             <TextView
                 android:id="@+id/txt_period"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/baloo"
                 android:text="Quand ?"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp" />
 
-            <Space
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:minHeight="10dp" />
+                android:gravity="center_horizontal">
+
+                <CheckBox
+                    android:id="@+id/cBox_matin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Matin"
+                    android:textColor="#FFFFFF" />
+
+                <CheckBox
+                    android:id="@+id/cBox_midi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Midi"
+                    android:textColor="#FFFFFF" />
+
+                <CheckBox
+                    android:id="@+id/cBox_aprem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Après-midi"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#400E0C0C"
+            android:gravity="center">
 
             <CheckBox
-                android:id="@+id/cBox_matin"
+                android:id="@+id/cBox_nuit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Matin"
-                android:textColor="#FFFFFF" />
-
-            <CheckBox
-                android:id="@+id/cBox_midi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Midi"
-                android:textColor="#FFFFFF" />
-
-            <CheckBox
-                android:id="@+id/cBox_aprem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Après-midi"
+                android:text="Nuit"
                 android:textColor="#FFFFFF" />
 
             <CheckBox
                 android:id="@+id/cBox_soir"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="Soir"
                 android:textColor="#FFFFFF" />
+        </LinearLayout>
 
-            <CheckBox
-                android:id="@+id/cBox_nuit"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Nuit"
-                android:textColor="#FFFFFF" />
+                android:backgroundTint="#FFEB3B"
+                android:backgroundTintMode="add"
+                android:fontFamily="@font/baloo"
+                android:text="Rechercher" />
 
         </LinearLayout>
     </LinearLayout>
@@ -125,38 +137,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="bottom"
         android:orientation="vertical">
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="94dp"
-            android:minHeight="20dp" />
-
-        <Button
-            android:id="@+id/btn_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#FFEB3B"
-            android:backgroundTintMode="add"
-            android:fontFamily="@font/baloo"
-            android:text="Rechercher" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="115dp" />
 
         <fragment
             android:id="@+id/fragment2"
             android:name="com.fbanseptcours.travellerguidmobileandroid.view.MenuFragment"
             android:layout_width="match_parent"
-            android:layout_height="70dp" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </LinearLayout>

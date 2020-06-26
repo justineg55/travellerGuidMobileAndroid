@@ -60,7 +60,7 @@ public class SettingsUserPreferencesActivity extends AppCompatActivity {
 
         btnValider = findViewById(R.id.btn_valider);
 
-        categories=new HashSet<>();
+        categories = new HashSet<>();
 
         //récupération de l'id du user connecté grâce à la méthode getUserConnected
         User userConnected = UserController.getInstance().getUserConnected(this);
