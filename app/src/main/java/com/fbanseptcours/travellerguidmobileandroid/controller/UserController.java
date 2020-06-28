@@ -217,8 +217,10 @@ public class UserController {
 //        Log.d("token",token);
         if(token != null) {
             try {
+                //ajout de *1000 pour récupérer la bonne date d'expiration
                 Date expiration = new Date(JWTUtils.getBody(token).getLong("exp") *1000);
-                Log.d("token", String.valueOf(expiration));
+//                Log.d("token", String.valueOf(expiration));
+                //token valide lorsque date d'expiration est apres la date actuelle -> on retourne true et donc pas besoin de s'authentifier tant que token valide
                     return expiration.after(new Date());
             } catch (UnsupportedEncodingException | JSONException e) {
                 return false;

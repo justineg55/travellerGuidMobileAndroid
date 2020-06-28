@@ -2,25 +2,20 @@ package com.fbanseptcours.travellerguidmobileandroid.controller;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.ArraySet;
 import android.util.Log;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.fbanseptcours.travellerguidmobileandroid.model.City;
 import com.fbanseptcours.travellerguidmobileandroid.model.Result;
-import com.fbanseptcours.travellerguidmobileandroid.model.User;
 import com.fbanseptcours.travellerguidmobileandroid.utils.RequestManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

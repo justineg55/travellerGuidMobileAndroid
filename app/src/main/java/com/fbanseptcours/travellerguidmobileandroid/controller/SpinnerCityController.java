@@ -66,7 +66,7 @@ public class SpinnerCityController {
             public Map<String, String> getHeaders() {
 
                 SharedPreferences preference = context.getSharedPreferences("MesPreferences", 0); // 0 - for private mode
-                Log.d("token",preference.getString("token",""));
+//                Log.d("token",preference.getString("token",""));
                 Map<String, String> params = new HashMap<>();
                 params.put("Content-Type", "application/json; charset=UTF-8");
                 params.put("Authorization", "Bearer " + preference.getString("token", ""));

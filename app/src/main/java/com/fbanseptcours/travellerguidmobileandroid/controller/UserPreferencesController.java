@@ -2,7 +2,6 @@ package com.fbanseptcours.travellerguidmobileandroid.controller;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -13,12 +12,9 @@ import com.fbanseptcours.travellerguidmobileandroid.utils.RequestManager;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Base64;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 

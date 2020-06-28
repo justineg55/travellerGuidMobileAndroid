@@ -18,11 +18,12 @@ public class FirstPageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("token","je passe par le onCreate de FirstpageActivity");
 
+        //si le token de l'utilisateur est toujours valide, pas besoin de se réauthentifier donc l'utilisateur est envoyé directement sur la page d'accueil
         if (UserController.getInstance().isTokenValide(this)) {
             startActivity(new Intent(this, MainActivity.class));
         } else {
+
             setContentView(R.layout.activity_first_page);
 
             final Button btn_register = findViewById(R.id.btn_create_account);
