@@ -65,9 +65,10 @@ public class UserPreferencesController {
             //on ajoute les headers de notre requete
             @Override
             public Map<String, String> getHeaders() {
-
+                SharedPreferences preference = context.getSharedPreferences("MesPreferences", 0); // 0 - for private mode
                 Map<String, String> params = new HashMap<>();
                 params.put("Content-Type", "application/json; charset=UTF-8");
+                params.put("Authorization", "Bearer " + preference.getString("token", ""));
                 return params;
             }
 

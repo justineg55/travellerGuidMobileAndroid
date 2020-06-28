@@ -50,7 +50,7 @@ public class MenuFragment extends Fragment {
         btnLogout.setOnClickListener((View v) -> {
             UserController.getInstance().deconnexion(
                     this.getContext(),
-                    ()->startActivity(new Intent(getActivity(),FirstPageActivity.class)
+                    ()->startActivity(new Intent(getActivity(),LoginActivity.class)
                     ));
         });
 

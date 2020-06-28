@@ -23,9 +23,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (UserController.getInstance().isTokenValide(this)) {
-            startActivity(new Intent(this, MainActivity.class));
-        } else {
+//        if (UserController.getInstance().isTokenValide(this)) {
+//            startActivity(new Intent(this, MainActivity.class));
+//        } else {
 
             setContentView(R.layout.activity_login);
 
@@ -42,6 +42,6 @@ public class LoginActivity extends AppCompatActivity {
                         (String messageErreur) -> Toast.makeText(this, messageErreur, Toast.LENGTH_LONG).show()
                 );
             });
-        }
+
     }
 }

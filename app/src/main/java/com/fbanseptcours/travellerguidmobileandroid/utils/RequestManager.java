@@ -10,8 +10,9 @@ import com.android.volley.toolbox.Volley;
 public class RequestManager {
 
     //on ajoute notre début d'url correspondant à notre api pour nos requetes
-    public static final String url="http://192.168.1.28:8080/";
-//    public static final String url="https://appli-mobile-appreciative-chipmunk-qx.cfapps.io/";
+//    public static final String url="http://192.168.1.28:8080/";
+//    public static final String url="http://169.254.87.44:8080/";
+    public static final String url="https://ifa-traveller-guide-api-grumpy-cassowary-ti.cfapps.io/";
 
     private static RequestManager instance;
     private RequestQueue requestQueue;

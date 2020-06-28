@@ -211,15 +211,15 @@ public class UserController {
 
     //méthode qui permet de vérifier la validité du token présent dans le fichier mesPreferences selon sa date d'expiration
     public boolean isTokenValide(Context context){
+        Log.d("token", "je passe par la méthode is tokenValide");
         SharedPreferences preference = context.getSharedPreferences(FICHIER_PREFERENCE, 0);
         String token = preference.getString("token",null);
+//        Log.d("token",token);
         if(token != null) {
             try {
-                Date expiration = new Date(JWTUtils.getBody(token).getLong("exp"));
-//                Log.d("date exp", String.valueOf(expiration));
-                if(expiration.before(new Date())){
-                    return true;
-                }
+                Date expiration = new Date(JWTUtils.getBody(token).getLong("exp") *1000);
+                Log.d("token", String.valueOf(expiration));
+                    return expiration.after(new Date());
             } catch (UnsupportedEncodingException | JSONException e) {
                 return false;
             }
