@@ -36,9 +36,9 @@ public class LoginActivity extends AppCompatActivity {
             btnConnection.setOnClickListener((View v) -> {
                 UserController.getInstance().connexion(this, login.getText().toString(),
                         password.getText().toString(),
-                        //en cas de succés :
+                        //en cas de succés : redirection de l'utilisateur vers la page d'accueil
                         () -> startActivity(new Intent(this, MainActivity.class)),
-                        // en cas d'erreur :
+                        // en cas d'erreur : apparition d'un toast impossible de se connecter
                         (String messageErreur) -> Toast.makeText(this, messageErreur, Toast.LENGTH_LONG).show()
                 );
             });
